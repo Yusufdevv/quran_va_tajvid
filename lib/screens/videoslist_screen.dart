@@ -61,8 +61,8 @@ class _VideosListScreenState extends State<VideosListScreen> {
                       autoPlay: false,
                     ),
                     initialVideoId: YoutubePlayer.convertUrlToId(urlList[i])!),
-                showVideoProgressIndicator: true,
                 progressIndicatorColor: Colors.black,
+                showVideoProgressIndicator: true,
                 progressColors: const ProgressBarColors(
                     handleColor: Colors.red, playedColor: Colors.red),
               ),
