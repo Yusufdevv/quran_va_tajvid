@@ -12,7 +12,7 @@
 ### -add other screens
 ### -[Shimmer package](https://pub.dev/packages/shimmer)
 ### -[Provider package](https://pub.dev/packages/provider)
-### -[Youtube API] (https://developers.google.com/youtube/v3/getting-started)
+### -[Youtube API](https://developers.google.com/youtube/v3/getting-started)
 
 
 For help getting started with Flutter development, view the
