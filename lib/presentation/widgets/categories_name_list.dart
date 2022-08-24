@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../constants/categories_name.dart';
+import '../../constants/categories_name.dart';
 
 class CategoriesNameList extends StatefulWidget {
   const CategoriesNameList({
@@ -35,18 +34,18 @@ class _CategoriesNameListState extends State<CategoriesNameList> {
                 },
                 child: Text(
                   widget.catogeriesName.list[i],
-                  style:  TextStyle(
+                  style: TextStyle(
                       fontSize: 20,
-                      color: selectedIndex == i ?Colors.black54 : Colors.black26,
+                      color:
+                          selectedIndex == i ? Colors.black54 : Colors.black26,
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              
               Container(
                 margin: const EdgeInsets.only(top: 5),
                 height: 3,
                 width: 30,
-                color:selectedIndex == i ? Colors.black : Colors.white,
+                color: selectedIndex == i ? Colors.black : Colors.transparent,
               )
             ],
           ),

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "186276145121",
+    "project_id": "quran-and-tajvid",
+    "storage_bucket": "quran-and-tajvid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186276145121:android:30d6eb981dc9f53db214a0",
+        "android_client_info": {
+          "package_name": "com.example.quran_va_tajvid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186276145121-843b83qanf7nrj4c6d8rm5ubrct1411j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5YQ4MWC_Q6G5RUxe2xeP9jWFvKAiDyyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186276145121-843b83qanf7nrj4c6d8rm5ubrct1411j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

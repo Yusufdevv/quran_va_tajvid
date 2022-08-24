@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quran_va_tajvid/constants/categories_name.dart';
-import 'package:quran_va_tajvid/widgets/categories_name_list.dart';
-import 'package:quran_va_tajvid/widgets/gridview_widget.dart';
+
+import '../../constants/categories_name.dart';
+import '../widgets/categories_name_list.dart';
+import '../widgets/gridview_widget.dart';
 
 class Body extends StatelessWidget {
   Body({
@@ -19,7 +20,7 @@ class Body extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CategoriesNameList(catogeriesName: catogeriesName),
-          Expanded(
+          const Expanded(
             child: GridViewWidget(),
           )
         ],

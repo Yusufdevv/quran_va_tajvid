@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:quran_va_tajvid/widgets/body.dart';
+import 'package:quran_va_tajvid/presentation/screens/favorites_screen.dart';
+import 'package:quran_va_tajvid/presentation/screens/search_screen.dart';
+import 'package:quran_va_tajvid/presentation/screens/settings_screen.dart';
+import 'package:quran_va_tajvid/presentation/widgets/app_drawer.dart';
+import '../widgets/body.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -7,6 +11,13 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
+List<Widget> _bodies = [
+  Body(),
+  const FavoritesScreen(),
+  const SearchScreen(),
+  const SettingsScreen()
+];
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
@@ -18,14 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Image.asset('assets/images/quranvatajvid.png'),
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.mail))],
       ),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            DrawerHeader(child: Image.asset('assets/images/quranvatajvid.png'))
-          ],
-        ),
-      ),
-      body: Body(),
+      drawer: const AppDrawer(),
+      body: _bodies[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.green,
