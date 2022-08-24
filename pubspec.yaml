@@ -20,6 +20,7 @@ dependencies:
   cached_network_image: ^3.2.1
   cloud_firestore: ^3.4.5
   firebase_core: ^1.21.0
+  scrollable_positioned_list: ^0.3.2
 
 dev_dependencies:
   flutter_test:

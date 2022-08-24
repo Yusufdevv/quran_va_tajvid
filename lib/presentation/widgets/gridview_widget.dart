@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quran_va_tajvid/presentation/screens/list_screen.dart';
 import 'package:quran_va_tajvid/presentation/screens/video_list_screen.dart';
 import '../../constants/main_ui_datas.dart';
 
@@ -24,15 +23,9 @@ class _GridViewWidgetState extends State<GridViewWidget> {
           var listImagesItem = listImages[i]['$i'];
           return GestureDetector(
             onTap: () => Get.to(() => VideoListScreen(
-                    playListId: listImagesItem[2],
-                    appBarTitle: listImagesItem[0],
-                    maxResults: listImagesItem[3])
-                // ListScreen(
-                //   appBarTitle: listImagesItem[0],
-                //   collection: listImagesItem[4],
-                //   doc: listImagesItem[5],
-                // ),
-                ),
+                playListId: listImagesItem[2],
+                appBarTitle: listImagesItem[0],
+                maxResults: listImagesItem[3])),
             child: Card(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
