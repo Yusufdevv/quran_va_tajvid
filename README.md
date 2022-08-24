@@ -1,16 +1,21 @@
 # quran_va_tajvid
 
-A new Flutter project.
+##This app includes Quran and Tajweed lessons in Uzbek language
 
-## Getting Started
+ ## Used tools :
+ - [youtube_player_flutter](https://pub.dev/packages/youtube_player_flutter)
+ - [Http package](https://pub.dev/packages/http)
 
-This project is a starting point for a Flutter application.
+##Project yet not finished
 
-A few resources to get you started if this is your first Flutter project:
+## Tasks to be done: 
+### -add other screens
+### -[Shimmer package](https://pub.dev/packages/shimmer)
+### -[Provider package](https://pub.dev/packages/provider)
+### -[Youtube API](https://developers.google.com/youtube/v3/getting-started)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
