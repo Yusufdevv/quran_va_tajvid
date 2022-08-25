@@ -11,13 +11,16 @@ class GridViewWidget extends StatefulWidget {
 }
 
 class _GridViewWidgetState extends State<GridViewWidget> {
-  final listImages = Get.put(ListImages()).mainUiDatas;
+  final listImages = Get.put(MainUiDatas()).mainUiDatas;
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisSpacing: 20, mainAxisSpacing: 20, crossAxisCount: 1),
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+          crossAxisCount: 1,
+        ),
         itemCount: listImages.length,
         itemBuilder: (ctx, i) {
           var listImagesItem = listImages[i]['$i'];

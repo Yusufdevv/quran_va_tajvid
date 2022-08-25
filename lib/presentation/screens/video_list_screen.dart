@@ -96,6 +96,7 @@ class _VideoListScreenState extends State<VideoListScreen> {
                                 Flexible(
                                   child: Text(
                                     videoItem.video!.title!,
+                                    maxLines: 3,
                                     style: const TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),

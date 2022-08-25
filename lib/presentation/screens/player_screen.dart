@@ -59,6 +59,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text(widget.appBarTitle),
       ),
       body: YoutubePlayerBuilder(
@@ -127,6 +128,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                 Flexible(
                                   child: Text(
                                     videoItem.video!.title!,
+                                    maxLines: 3,
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500,
