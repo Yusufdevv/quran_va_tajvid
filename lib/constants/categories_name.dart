@@ -1,8 +1,3 @@
-class CategoriesName{
-  List<String> list = [
-    'Qur\'on darslari',
-    'Tajvid',
-    'Arab tili',
-    'Savol-javoblar'
-  ];
+class CategoriesName {
+  List<String> list = ['Qur\'on darslari', 'Tajvid', 'Arab tili', 'Har xil'];
 }

@@ -1,46 +1,54 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:quran_va_tajvid/logic/controllers/controller.dart';
 import '../../constants/categories_name.dart';
 
 class CategoriesNameList extends StatefulWidget {
   const CategoriesNameList({
     Key? key,
-    required this.catogeriesName,
   }) : super(key: key);
-  final CategoriesName catogeriesName;
 
   @override
   State<CategoriesNameList> createState() => _CategoriesNameListState();
 }
 
 class _CategoriesNameListState extends State<CategoriesNameList> {
+  final catogeriesName = Get.put(CategoriesName());
+
+  final categoryListController =
+      Get.put<CategoryListController>(CategoryListController());
+
   var selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    log("_categoryListController.categoryIndex ${categoryListController.categoryIndex}");
     return SizedBox(
       height: 50,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: widget.catogeriesName.list.length,
+        itemCount: catogeriesName.list.length,
         itemBuilder: (ctx, i) => Padding(
-          padding: const EdgeInsets.only(right: 14.0),
+          padding: const EdgeInsets.only(right: 15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedIndex = i;
-                  });
-                },
-                child: Text(
-                  widget.catogeriesName.list[i],
-                  style: TextStyle(
-                      fontSize: 20,
-                      color:
-                          selectedIndex == i ? Colors.black54 : Colors.black26,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = i;
+                    });
+                    categoryListController.changeCategoryIndex(i);
+                  },
+                  child: Text(
+                    catogeriesName.list[i],
+                    style: TextStyle(
+                        fontSize: 24,
+                        color:
+                            selectedIndex == i ? Colors.black : Colors.black26,
+                        fontWeight: FontWeight.bold),
+                  )),
               Container(
                 margin: const EdgeInsets.only(top: 5),
                 height: 3,
