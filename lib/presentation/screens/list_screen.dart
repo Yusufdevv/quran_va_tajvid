@@ -100,19 +100,19 @@
 //   }
 // }
 
-// // ? add function to firestore 
-// // ? final docVideo = FirebaseFirestore.instance
-// // ?                     .collection(widget.collection)
-// // ?                     .doc(widget.doc);
-// // ?                 List<Map<String, dynamic>> videosList = [];
-// // ?                 for (var i = 0; i < _videosList!.videos!.length; i++) {
-// // ?                  VideoItem videoItem = _videosList!.videos![i];
-// // ?                   final json = {
-// // ?                     'videoImageUrl':
-// // ?                         'https://i.ytimg.com/vi/${videoItem.video!.resourceId!.videoId!}/default.jpg',
-// // ?                     'videoTitle': videoItem.video!.title!,
-// // ?                     'videoId': videoItem.video!.resourceId!.videoId!,
-// // ?                  };
-// // ?                   videosList.add(json);
-// // ?                }
-// // ?                 docVideo.set({'videosList': videosList});
+// ! add function to firestore 
+// ? final docVideo = FirebaseFirestore.instance
+// ?                     .collection(widget.collection)
+// ?                     .doc(widget.doc);
+// ?                 List<Map<String, dynamic>> videosList = [];
+// ?                 for (var i = 0; i < _videosList!.videos!.length; i++) {
+// ?                  VideoItem videoItem = _videosList!.videos![i];
+// ?                   final json = {
+// ?                     'videoImageUrl':
+// ?                         'https://i.ytimg.com/vi/${videoItem.video!.resourceId!.videoId!}/default.jpg',
+// ?                     'videoTitle': videoItem.video!.title!,
+// ?                     'videoId': videoItem.video!.resourceId!.videoId!,
+// ?                  };
+// ?                   videosList.add(json);
+// ?                }
+// ?                 docVideo.set({'videosList': videosList});
