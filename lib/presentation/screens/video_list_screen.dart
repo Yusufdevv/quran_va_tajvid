@@ -111,9 +111,10 @@ class _VideoListScreenState extends State<VideoListScreen> {
                 ),
               ],
             )
-          : const SizedBox(
-              child: Center(child: Text('Xatolik')),
-            ),
+          : const Center(
+              child: CircularProgressIndicator(
+              color: Colors.green,
+            )),
     );
   }
 }

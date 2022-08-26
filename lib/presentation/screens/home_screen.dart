@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quran_va_tajvid/presentation/screens/favorites_screen.dart';
-import 'package:quran_va_tajvid/presentation/screens/search_screen.dart';
 import 'package:quran_va_tajvid/presentation/screens/settings_screen.dart';
-import 'package:quran_va_tajvid/presentation/widgets/app_drawer.dart';
 import '../widgets/body.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,9 +11,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 List<Widget> _bodies = [
-  Body(),
+  const Body(),
   const FavoritesScreen(),
-  const SearchScreen(),
   const SettingsScreen()
 ];
 
@@ -24,18 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: Image.asset('assets/images/quranvatajvid.png'),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.mail))],
-      ),
-      drawer: const AppDrawer(),
       body: _bodies[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.green,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.black,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.white,
           currentIndex: selectedIndex,
           onTap: (index) => setState(() => selectedIndex = index),
           items: const [
@@ -43,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(Icons.home), label: "Bosh sahifa"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.favorite), label: 'Sevimlilar'),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Qidiruv'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings), label: 'Sozlamalar'),
           ]),
