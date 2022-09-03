@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quran_va_tajvid/logic/controllers/category_list_controller.dart';
-// import '../../constants/categories_name.dart';
 
-class CategoriesNameList extends StatefulWidget {
+class CategoriesNameList extends StatelessWidget {
+  final bool favorites;
+
   const CategoriesNameList({
+    required this.favorites,
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<CategoriesNameList> createState() => _CategoriesNameListState();
-}
-
-class _CategoriesNameListState extends State<CategoriesNameList> {
-  // final catogeriesName = Get.put(CategoriesName());
-
-  // final categoryListController =
-  //     Get.put<CategoryListController>(CategoryListController());
-
-  // var selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CategoryListController>(builder: (cont) {
@@ -33,28 +24,28 @@ class _CategoriesNameListState extends State<CategoriesNameList> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                    onTap: () {
-                      // setState(() {
-                      //   selectedIndex = i;
-                      // });
-                      cont.changeCategoryIndex(i);
-                    },
-                    child: Text(
-                      cont.list[i],
-                      style: TextStyle(
-                          fontSize: 24,
-                          color: cont.categoryIndex == i
-                              ? Colors.black
-                              : Colors.black26,
-                          fontWeight: FontWeight.bold),
-                    )),
+                  onTap: () {
+                    favorites
+                        ? cont.changefavoriteCatIndex(i)
+                        : cont.changeCategoryIndex(i);
+                  },
+                  child: Text(
+                    cont.list[i],
+                    style: TextStyle(
+                        fontSize: 24,
+                        color: favorites
+                            ? changeColor(cont.favoriteCatIndex, i, true)
+                            : changeColor(cont.categoryIndex, i, true),
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
                 Container(
                   margin: const EdgeInsets.only(top: 5),
                   height: 3,
                   width: 30,
-                  color: cont.categoryIndex == i
-                      ? Colors.black
-                      : Colors.transparent,
+                  color: favorites
+                      ? changeColor(cont.favoriteCatIndex, i, false)
+                      : changeColor(cont.categoryIndex, i, false),
                 )
               ],
             ),
@@ -62,5 +53,13 @@ class _CategoriesNameListState extends State<CategoriesNameList> {
         ),
       );
     });
+  }
+
+  Color changeColor(int contIndex, int index, bool text) {
+    if (text) {
+      return contIndex == index ? Colors.black : Colors.black26;
+    } else {
+      return contIndex == index ? Colors.black : Colors.transparent;
+    }
   }
 }

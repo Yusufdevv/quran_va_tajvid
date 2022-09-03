@@ -11,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 List<Widget> _bodies = [
-  const Body(),
+  const HomeScreenBody(),
   const FavoritesScreen(),
   const SettingsScreen()
 ];

@@ -2,6 +2,10 @@
 //
 //     final videosList = videosListFromJson(jsonString);
 
+//!
+//! FireStore dan malumotni olish uchun ishlatiladi
+//!
+
 import 'dart:convert';
 
 VideosList videosListFromJson(String str) =>

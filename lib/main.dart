@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quran_va_tajvid/app_routes/app_pages.dart';
+import 'package:quran_va_tajvid/logic/bindings/splash_binding.dart';
+import 'package:quran_va_tajvid/presentation/screens/splash_screen.dart';
 import 'presentation/screens/home_screen.dart';
 
 Future<void> main() async {
@@ -20,7 +23,9 @@ class MyApp extends StatelessWidget {
           // primaryColor:const Color.fromARGB(255, 87, 176, 9)
           ),
       title: 'Qur\'an va tajvid',
-      home: const HomeScreen(),
+      initialBinding: SplashBinding(),
+      getPages: AppPages.pages,
+      home: const SplashScreen(),
     );
   }
 }

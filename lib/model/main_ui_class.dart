@@ -1,18 +1,20 @@
 class MainUi {
   String title;
   String imgPath;
-  String token;
+  String playlistId;
   int count;
-  String type;
-  String author;
+  String collection;
+  String doc;
+  bool isFavorite = false;
 
   MainUi(
       {required this.title,
       required this.imgPath,
-      required this.token,
+      required this.playlistId,
       required this.count,
-      required this.type,
-      required this.author});
+      required this.collection,
+      required this.doc,
+      this.isFavorite = false});
 }
 
 class MainUiData {
