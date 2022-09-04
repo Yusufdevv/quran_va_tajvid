@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quran_va_tajvid/presentation/widgets/app_drawer.dart';
 
 import '../widgets/categories_name_list.dart';
 import '../widgets/gridview_widget.dart';
@@ -18,7 +17,6 @@ class HomeScreenBody extends StatelessWidget {
         title: Image.asset('assets/images/quranvatajvid.png'),
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.mail))],
       ),
-      drawer: const AppDrawer(),
       body: Padding(
         padding: const EdgeInsets.only(top: 16.0, right: 16.0, left: 16.0),
         child: Column(

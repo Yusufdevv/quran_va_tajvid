@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quran_va_tajvid/presentation/widgets/app_drawer.dart';
 import 'package:quran_va_tajvid/presentation/widgets/categories_name_list.dart';
 import 'package:quran_va_tajvid/presentation/widgets/gridview_widget.dart';
 
@@ -13,7 +12,6 @@ class FavoritesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Sevimlilar'),
       ),
-      drawer: const AppDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

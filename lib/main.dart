@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:quran_va_tajvid/app_routes/app_pages.dart';
 import 'package:quran_va_tajvid/logic/bindings/splash_binding.dart';
 import 'package:quran_va_tajvid/presentation/screens/splash_screen.dart';
-import 'presentation/screens/home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

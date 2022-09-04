@@ -37,7 +37,6 @@ class CategoryListController extends GetxController {
         .firstWhere((element) => element.playlistId == playlistId);
     addFavorites(item);
     update();
-    print(item);
   }
 
 //   List<dynamic> mainUiData = [
