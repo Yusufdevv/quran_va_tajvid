@@ -17,7 +17,7 @@ class CategoriesNameList extends StatelessWidget {
         height: 50,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: cont.list.length,
+          itemCount: cont.categoryList.length,
           itemBuilder: (ctx, i) => Padding(
             padding: const EdgeInsets.only(right: 15.0),
             child: Column(
@@ -30,7 +30,7 @@ class CategoriesNameList extends StatelessWidget {
                         : cont.changeCategoryIndex(i);
                   },
                   child: Text(
-                    cont.list[i],
+                    cont.categoryList[i],
                     style: TextStyle(
                         fontSize: 24,
                         color: favorites

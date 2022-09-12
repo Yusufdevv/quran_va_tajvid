@@ -2,7 +2,7 @@
     package="com.example.quran_va_tajvid">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="quran_va_tajvid"
+        android:label="Qur\'on va Tajvid"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

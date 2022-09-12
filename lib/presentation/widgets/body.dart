@@ -27,7 +27,7 @@ class HomeScreenBody extends StatelessWidget {
             ),
             Expanded(
               child: GridViewWidget(
-                favorites: false,
+                isFavorites: false,
               ),
             )
           ],

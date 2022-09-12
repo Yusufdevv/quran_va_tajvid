@@ -22,7 +22,7 @@ class FavoritesScreen extends StatelessWidget {
             ),
             Expanded(
               child: GridViewWidget(
-                favorites: true,
+                isFavorites: true,
               ),
             )
           ],

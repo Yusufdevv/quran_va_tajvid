@@ -35,21 +35,22 @@ class _VideoListScreenState extends State<VideoListScreen> {
 
   _loadingVideos() async {
     VideosList tempVideosList = await ApiServices.getVideosList(
-        playListId: widget.playListId,
-        pageToken: '',
-        maxResults: widget.maxResults);
-    _videosList!.videos!.addAll(tempVideosList.videos!);
+        playListId: widget.playListId, pageToken: '', maxResults: 50);
+    if (tempVideosList.videos != null) {
+      _videosList?.videos?.addAll(tempVideosList.videos!);
+    }
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    print(_videosList!.videos!.length);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         title: Text(widget.appBarTitle),
       ),
-      body: _videosList != null
+      body: _videosList!.videos!.isNotEmpty
           ? Column(
               children: [
                 const SizedBox(height: 7),
@@ -58,63 +59,68 @@ class _VideoListScreenState extends State<VideoListScreen> {
                       itemCount: _videosList!.videos!.length,
                       itemBuilder: (context, index) {
                         VideoItem videoItem = _videosList!.videos![index];
-                        return GestureDetector(
-                          onTap: () {
-                            // ignore: no_leading_underscores_for_local_identifiers
-                            final _selectedVideoId = _videosList!
-                                .videos![index].video!.resourceId!.videoId!;
-                            Get.off(() => PlayerScreen(
-                                  appBarTitle: widget.appBarTitle,
-                                  selectedVideoId: _selectedVideoId,
-                                  videoLists: _videosList!,
-                                  scrollIndex: index,
-                                ));
-                          },
-                          child: Container(
-                            height: 80,
-                            decoration:
-                                BoxDecoration(color: Colors.white, boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey[400]!,
-                                blurRadius: 10,
-                                offset: const Offset(0.4, 0),
-                              )
-                            ]),
-                            margin: const EdgeInsets.only(bottom: 5),
-                            child: Row(
-                              children: [
-                                const SizedBox(width: 10),
-                                SizedBox(
+                        return videoItem.video?.thumbnails?.thumbnailsDefault
+                                    ?.url !=
+                                null
+                            ? GestureDetector(
+                                onTap: () {
+                                  // ignore: no_leading_underscores_for_local_identifiers
+                                  final _selectedVideoId = _videosList!
+                                      .videos![index]
+                                      .video!
+                                      .resourceId!
+                                      .videoId!;
+                                  Get.off(() => PlayerScreen(
+                                        appBarTitle: widget.appBarTitle,
+                                        selectedVideoId: _selectedVideoId,
+                                        videoLists: _videosList!,
+                                        scrollIndex: index,
+                                      ));
+                                },
+                                child: Container(
                                   height: 80,
-                                  width: 120,
-                                  child: CachedNetworkImage(
-                                    imageUrl: videoItem.video!.thumbnails!
-                                        .thumbnailsDefault!.url!,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey[400]!,
+                                          blurRadius: 10,
+                                          offset: const Offset(0.4, 0),
+                                        )
+                                      ]),
+                                  margin: const EdgeInsets.only(bottom: 5),
+                                  child: Row(
+                                    children: [
+                                      const SizedBox(width: 10),
+                                      SizedBox(
+                                        height: 80,
+                                        width: 120,
+                                        child: CachedNetworkImage(
+                                          imageUrl: videoItem.video!.thumbnails!
+                                              .thumbnailsDefault!.url!,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 20),
+                                      Flexible(
+                                        child: Text(
+                                          videoItem.video!.title!,
+                                          maxLines: 2,
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 20),
+                                    ],
                                   ),
                                 ),
-                                const SizedBox(width: 20),
-                                Flexible(
-                                  child: Text(
-                                    videoItem.video!.title!,
-                                    maxLines: 3,
-                                    style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                                const SizedBox(width: 20),
-                              ],
-                            ),
-                          ),
-                        );
+                              )
+                            : SizedBox();
                       }),
                 ),
               ],
             )
-          : const Center(
-              child: CircularProgressIndicator(
-              color: Colors.green,
-            )),
+          : const Center(child: Text('Videolar mavjud emas')),
     );
   }
 }
