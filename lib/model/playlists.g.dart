@@ -21,7 +21,7 @@ class PlaylistAdapter extends TypeAdapter<Playlist> {
       imgPath: fields[1] as String,
       playlistId: fields[2] as String,
       count: fields[3] as int,
-      collection: fields[4] as String,
+      cateogory: fields[4] as String,
       doc: fields[5] as String,
       isFavorite: fields[6] as bool,
     );
@@ -40,7 +40,7 @@ class PlaylistAdapter extends TypeAdapter<Playlist> {
       ..writeByte(3)
       ..write(obj.count)
       ..writeByte(4)
-      ..write(obj.collection)
+      ..write(obj.cateogory)
       ..writeByte(5)
       ..write(obj.doc)
       ..writeByte(6)

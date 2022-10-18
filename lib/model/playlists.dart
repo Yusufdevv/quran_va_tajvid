@@ -14,7 +14,7 @@ class Playlist extends HiveObject {
   @HiveField(3)
   int count;
   @HiveField(4)
-  String collection;
+  String cateogory;
   @HiveField(5)
   String doc;
   @HiveField(6)
@@ -25,7 +25,7 @@ class Playlist extends HiveObject {
     required this.imgPath,
     required this.playlistId,
     required this.count,
-    required this.collection,
+    required this.cateogory,
     required this.doc,
     this.isFavorite = false,
   });

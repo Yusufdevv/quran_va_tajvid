@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:quran_va_tajvid/logic/controllers/category_list_controller.dart';
 import 'package:quran_va_tajvid/model/playlists.dart';
 import 'package:quran_va_tajvid/presentation/screens/video_list_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class GridViewWidget extends StatelessWidget {
   final bool isFavorites;
@@ -92,32 +93,43 @@ class _GridViewBuilderState extends State<GridViewBuilder> {
                       fit: BoxFit.fill,
                     ),
                   ),
-                  SizedBox(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Container(
-                            padding: const EdgeInsets.all(4),
-                            child: Text(
-                              'Manba : https://www.youtube.com/playlist?list=${playlistItem.playlistId}',
-                              style: const TextStyle(fontSize: 20),
-                              maxLines: 1,
-                            ),
-                          ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButton(
+                        onPressed: () async {
+                          final url =
+                              'https://www.youtube.com/playlist?list=${playlistItem.playlistId}';
+                          if (!await launchUrl(Uri.parse(url),
+                              mode: LaunchMode.externalApplication)) {
+                            throw 'Can not launch url';
+                          }
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text('Manba : ',
+                                style: const TextStyle(fontSize: 16)),
+                            Image.asset('assets/youtube-logo.png',
+                                width: 30, height: 30),
+                            Text(' Youtube',
+                                style: const TextStyle(fontSize: 16)),
+                          ],
                         ),
-                        IconButton(
-                          onPressed: () {
-                            widget.toggleFavorite(
-                                playlistItem, widget.favorites);
-                          },
-                          icon: const Icon(Icons.favorite_border),
-                          color: playlistItem.isFavorite
-                              ? Colors.red
-                              : Colors.black,
-                        )
-                      ],
-                    ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          // widget.toggleFavorite(
+                          //     playlistItem, widget.favorites);
+                        },
+                        padding: EdgeInsets.all(0),
+                        icon: Icon(playlistItem.isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border),
+                        color:
+                            playlistItem.isFavorite ? Colors.red : Colors.black,
+                      )
+                    ],
                   )
                 ],
               ),
