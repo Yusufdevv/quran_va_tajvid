@@ -58,95 +58,93 @@ class _PlayerScreenState extends State<PlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Text(widget.appBarTitle),
-      ),
-      body: YoutubePlayerBuilder(
-          player: YoutubePlayer(
-            controller: _controller,
-            progressIndicatorColor: Colors.black,
-            showVideoProgressIndicator: false,
-            progressColors: const ProgressBarColors(
-                handleColor: Colors.red, playedColor: Colors.red),
-          ),
-          builder: (context, player) {
-            return Column(
-              children: [
-                player,
-                Container(
-                  height: 10,
-                  width: double.infinity,
-                  color: Colors.white,
-                ),
-                Expanded(
-                  child: ScrollablePositionedList.builder(
-                      itemScrollController: itemController,
-                      itemCount: widget.videoLists.videos!.length,
-                      itemBuilder: (context, index) {
-                        VideoItem videoItem = widget.videoLists.videos![index];
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _selectedIndex = index;
-                              videoId = widget
-                                  .videoLists
-                                  .videos![_selectedIndex!]
-                                  .video!
-                                  .resourceId!
-                                  .videoId!;
-                              _controller.load(videoId!);
-                            });
-                          },
-                          child: Container(
-                            height: 80,
-                            margin: const EdgeInsets.only(bottom: 5),
-                            decoration: BoxDecoration(
-                                color: _selectedIndex == index
-                                    ? Theme.of(context).primaryColor
-                                    : Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey[400]!,
-                                    blurRadius: 10,
-                                    offset: const Offset(0.4, 0),
-                                  )
-                                ]),
-                            child: Row(
-                              children: [
-                                const SizedBox(width: 10),
-                                SizedBox(
-                                  height: 80,
-                                  width: 120,
-                                  child: CachedNetworkImage(
-                                    fit: BoxFit.cover,
-                                    imageUrl: videoItem.video!.thumbnails!
-                                        .thumbnailsDefault!.url!,
+      body: SafeArea(
+        child: YoutubePlayerBuilder(
+            player: YoutubePlayer(
+              controller: _controller,
+              progressIndicatorColor: Colors.black,
+              showVideoProgressIndicator: false,
+              progressColors: const ProgressBarColors(
+                  handleColor: Colors.red, playedColor: Colors.red),
+            ),
+            builder: (context, player) {
+              return Column(
+                children: [
+                  player,
+                  Container(
+                    height: 10,
+                    width: double.infinity,
+                    color: Colors.white,
+                  ),
+                  Expanded(
+                    child: ScrollablePositionedList.builder(
+                        itemScrollController: itemController,
+                        itemCount: widget.videoLists.videos!.length,
+                        itemBuilder: (context, index) {
+                          VideoItem videoItem = widget.videoLists.videos![index];
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _selectedIndex = index;
+                                videoId = widget
+                                    .videoLists
+                                    .videos![_selectedIndex!]
+                                    .video!
+                                    .resourceId!
+                                    .videoId!;
+                                _controller.load(videoId!);
+                              });
+                            },
+                            child: Container(
+                              height: 80,
+                              margin: const EdgeInsets.only(bottom: 5),
+                              decoration: BoxDecoration(
+                                  color: _selectedIndex == index
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey[400]!,
+                                      blurRadius: 10,
+                                      offset: const Offset(0.4, 0),
+                                    )
+                                  ]),
+                              child: Row(
+                                children: [
+                                  const SizedBox(width: 10),
+                                  SizedBox(
+                                    height: 80,
+                                    width: 120,
+                                    child: CachedNetworkImage(
+                                      fit: BoxFit.cover,
+                                      imageUrl: videoItem.video!.thumbnails!
+                                          .thumbnailsDefault!.url!,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(width: 20),
-                                Flexible(
-                                  child: Text(
-                                    videoItem.video!.title!,
-                                    maxLines: 3,
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500,
-                                        color: _selectedIndex == index
-                                            ? Colors.white
-                                            : Colors.black),
+                                  const SizedBox(width: 20),
+                                  Flexible(
+                                    child: Text(
+                                      videoItem.video!.title!,
+                                      maxLines: 3,
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                          color: _selectedIndex == index
+                                              ? Colors.white
+                                              : Colors.black),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(width: 10),
-                              ],
+                                  const SizedBox(width: 10),
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      }),
-                ),
-              ],
-            );
-          }),
+                          );
+                        }),
+                  ),
+                ],
+              );
+            }),
+      ),
     );
   }
 }

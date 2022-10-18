@@ -15,8 +15,8 @@ class GridViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CategoryListController>(builder: (cont) {
       final list = isFavorites
-          ? cont.playlistsList[cont.favoriteCatIndex]
-          : cont.playlistsList[cont.categoryIndex];
+          ? cont.favoritePlaylists[cont.favoriteCatIndex]
+          : cont.playlists[cont.categoryIndex];
       return list.playlist.isNotEmpty
           ? GridViewBuilder(
               list: list,
@@ -33,7 +33,7 @@ class GridViewWidget extends StatelessWidget {
   }
 }
 
-class GridViewBuilder extends StatelessWidget {
+class GridViewBuilder extends StatefulWidget {
   const GridViewBuilder(
       {Key? key,
       required this.list,
@@ -46,15 +46,20 @@ class GridViewBuilder extends StatelessWidget {
   final Function toggleFavorite;
 
   @override
+  State<GridViewBuilder> createState() => _GridViewBuilderState();
+}
+
+class _GridViewBuilderState extends State<GridViewBuilder> {
+  @override
   Widget build(BuildContext context) {
     return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
           mainAxisSpacing: 10,
         ),
-        itemCount: list.playlist.length,
+        itemCount: widget.list.playlist.length,
         itemBuilder: (ctx, i) {
-          final playlistItem = list.playlist[i];
+          final playlistItem = widget.list.playlist[i];
           return GestureDetector(
             onTap: () => Get.to(
               () => VideoListScreen(
@@ -103,9 +108,10 @@ class GridViewBuilder extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () {
-                            toggleFavorite(playlistItem, favorites);
+                            widget.toggleFavorite(
+                                playlistItem, widget.favorites);
                           },
-                          icon: const Icon(Icons.favorite_outline),
+                          icon: const Icon(Icons.favorite_border),
                           color: playlistItem.isFavorite
                               ? Colors.red
                               : Colors.black,

@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.green
-          // primaryColor:const Color.fromARGB(255, 87, 176, 9)
+      theme: ThemeData(
+        primarySwatch: Colors.green,
           ),
       title: 'Qur\'an va tajvid',
       initialBinding: SplashBinding(),

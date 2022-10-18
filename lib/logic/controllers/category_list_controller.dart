@@ -7,12 +7,17 @@ class CategoryListController extends GetxController {
   var favoriteCatIndex = 0;
 
   List<Playlists> playlistsList = [];
+  List<Playlists> favoritePlaylists = [
+    Playlists(category: 'tajvid', playlist: []),
+    Playlists(category: 'quran', playlist: []),
+    Playlists(category: 'arab-tili', playlist: []),
+    Playlists(category: 'har xil', playlist: []),
+  ];
   late Box<Playlists> playlistBox;
 
   CategoryListController() {
     playlistBox = Hive.box('playlistBox');
-    print(playlistBox.get('playlistBox') == null);
-    if (playlistBox.get('playlistBox') == null) {
+    if (playlistBox.values.isEmpty) {
       playlists.forEach((element) {
         playlistBox.add(element);
       });
@@ -21,10 +26,14 @@ class CategoryListController extends GetxController {
     for (int i = 0; i < playlistBox.values.length; i++) {
       playlistsList.add(playlistBox.getAt(i)!);
     }
+    update();
   }
 
   // List<Playlists> get favoritesPlaylists {
-  //   return playlistsList.where((element) => element)
+  //   playlistsList.forEach((element) {
+  //     element.playlist.where((element) => element.isFavorite);
+  //   });
+  //   return playlistsList;
   // }
 
   void changeCategoryIndex(dynamic index) {
@@ -36,20 +45,6 @@ class CategoryListController extends GetxController {
     favoriteCatIndex = index;
     update();
   }
-
-  // void addFavorites(MainUi playlist) {
-  // favoritesList[categoryIndex].mainUi.add(item);
-  //   update();
-  // }
-
-  // void toggleFavorite(String playlistId) {
-  //   var item = mainUiDatas[categoryIndex]
-  //       .mainUi
-  //       .firstWhere((element) => element.playlistId == playlistId);
-  //       favoritesList[categoryIndex].mainUi.add(item);
-  //   // addFavorites(item);
-  //   update();
-  // }
 
   void toggleFavorite(Playlist playlist, bool isFavoriteScreen) {
     int playlistsIndex = isFavoriteScreen ? favoriteCatIndex : categoryIndex;
@@ -141,8 +136,7 @@ class CategoryListController extends GetxController {
             doc: 'qurontv-maullim-soniy'),
         // image
         Playlist(
-            title:
-                'Qur\'on oyida Qur\'onni shayximiz bilan birga o\'rganamiz.',
+            title: 'Qur\'on oyida Qur\'onni shayximiz bilan birga o\'rganamiz.',
             imgPath: 'assets/images/quron-oyida-quronni-alquran.jpg',
             playlistId: 'PL7AEFfKAwqe5WDJ5i-3z_202TzitNXGsn',
             count: 31,
@@ -268,7 +262,7 @@ class CategoryListController extends GetxController {
       ],
     ),
     Playlists(
-      category: 'arab tili',
+      category: 'arab-tili',
       playlist: [
         Playlist(
             title: 'Arab tili "0" dan. Shams Solih',
@@ -285,24 +279,23 @@ class CategoryListController extends GetxController {
             collection: 'arab-tili',
             doc: 'yetuk-arabgramma'),
         Playlist(
-            title:
-                'Qur\'oni Karim va Arab tilini birga o\'rganing',
-            imgPath: 'assets/images/quroni-karim-va-arab-tilini-birga-muhammad-odil.jpg',
+            title: 'Qur\'oni Karim va Arab tilini birga o\'rganing',
+            imgPath:
+                'assets/images/quroni-karim-va-arab-tilini-birga-muhammad-odil.jpg',
             playlistId: 'PLK-PLeB05hlz3P1gLKev5jsmQ-Fmpmqi4Dt8c',
             count: 14,
             collection: 'arab-tili',
             doc: 'muhammad-quron-arabtili'),
         Playlist(
-            title:
-                'Arab tili Madina Kurs Durusul Lug\'a darsi',
-            imgPath: 'assets/images/arabtili-madina-kurs-durusul-luga-muhammad.jpg',
+            title: 'Arab tili Madina Kurs Durusul Lug\'a darsi',
+            imgPath:
+                'assets/images/arabtili-madina-kurs-durusul-luga-muhammad.jpg',
             playlistId: 'PLK-PLeB05hlz3P1hgSmc-A3sN51Ci9jRStl52',
             count: 30,
             collection: 'arab-tili',
             doc: 'muhammad-madina-durusul'),
         Playlist(
-            title:
-                'Arab tili darsi. Yengil va Yangi uslubda',
+            title: 'Arab tili darsi. Yengil va Yangi uslubda',
             imgPath: 'assets/images/arabtili-yengil-va-yangi-muhammad.jpg',
             playlistId: 'PLeB05hlz3P1i9UH-kSXm7W0p5X-8N-VTu',
             count: 10,
@@ -328,8 +321,7 @@ class CategoryListController extends GetxController {
       category: 'har xil',
       playlist: [
         Playlist(
-            title:
-                'Qur\'on qalb shifosi turkum suhbatlari',
+            title: 'Qur\'on qalb shifosi turkum suhbatlari',
             imgPath: 'assets/images/quron-qalb-shifosi-turkum-alquran.jpg',
             playlistId: 'PL7AEFfKAwqe5fTC33DWTrC7x1R7UFBaVr',
             count: 18,
@@ -367,3 +359,16 @@ class CategoryListController extends GetxController {
     ),
   ];
 }
+
+  // void addFavorites(MainUi playlist) {
+  // favoritesList[categoryIndex].mainUi.add(item);
+  //   update();
+  // }
+
+  // void toggleFavorite(String playlistId) {
+  //   var item = mainUiDatas[categoryIndex]
+  //       .mainUi
+  //       .firstWhere((element) => element.playlistId == playlistId);
+    // addFavorites(item);
+  //   update();
+  // }
