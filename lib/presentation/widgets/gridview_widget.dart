@@ -16,11 +16,11 @@ class GridViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CategoryListController>(builder: (cont) {
       final list = isFavorites
-          ? cont.favoritePlaylists[cont.favoriteCatIndex]
-          : cont.playlists[cont.categoryIndex];
+          ? cont.allPlaylists[cont.favoriteCatIndex]
+          : cont.allPlaylists[cont.categoryIndex];
       return list.playlist.isNotEmpty
           ? GridViewBuilder(
-              list: list,
+              playlists: list,
               favorites: isFavorites,
               toggleFavorite: cont.toggleFavorite,
             )
@@ -37,12 +37,12 @@ class GridViewWidget extends StatelessWidget {
 class GridViewBuilder extends StatefulWidget {
   const GridViewBuilder(
       {Key? key,
-      required this.list,
+      required this.playlists,
       required this.favorites,
       required this.toggleFavorite})
       : super(key: key);
 
-  final Playlists list;
+  final Playlists playlists;
   final bool favorites;
   final Function toggleFavorite;
 
@@ -53,14 +53,18 @@ class GridViewBuilder extends StatefulWidget {
 class _GridViewBuilderState extends State<GridViewBuilder> {
   @override
   Widget build(BuildContext context) {
+    List<Playlist> playlists = widget.playlists.playlist;
+   if (widget.favorites) {
+      playlists = widget.playlists.playlist.where((element) => element.isFavorite).toList();
+   }
     return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
           mainAxisSpacing: 10,
         ),
-        itemCount: widget.list.playlist.length,
+        itemCount:playlists.length,
         itemBuilder: (ctx, i) {
-          final playlistItem = widget.list.playlist[i];
+          final playlistItem = playlists[i];
           return GestureDetector(
             onTap: () => Get.to(
               () => VideoListScreen(
@@ -119,8 +123,8 @@ class _GridViewBuilderState extends State<GridViewBuilder> {
                       ),
                       IconButton(
                         onPressed: () {
-                          // widget.toggleFavorite(
-                          //     playlistItem, widget.favorites);
+                          widget.toggleFavorite(
+                              playlistItem, widget.favorites);
                         },
                         padding: EdgeInsets.all(0),
                         icon: Icon(playlistItem.isFavorite

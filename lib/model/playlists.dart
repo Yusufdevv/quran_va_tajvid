@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:hive/hive.dart';
 
 part 'playlists.g.dart';
@@ -32,7 +33,7 @@ class Playlist extends HiveObject {
 }
 
 @HiveType(typeId: 1)
-class Playlists {
+class Playlists extends HiveObject{
   @HiveField(0)
   String category;
   @HiveField(1)
@@ -43,3 +44,5 @@ class Playlists {
     required this.playlist,
   });
 }
+
+

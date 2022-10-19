@@ -16,24 +16,28 @@ class CategoryListController extends GetxController {
   late Box<Playlists> playlistBox;
 
   CategoryListController() {
-    playlistBox = Hive.box('playlistBox');
-    if (playlistBox.values.isEmpty) {
-      playlists.forEach((element) {
-        playlistBox.add(element);
+    playlistBox = Hive.box<Playlists>('playlistBox');
+    if (playlistBox.values.length == 0) {
+      allPlaylists.forEach((playlists) {
+        playlistBox.add(playlists);
+        print('${playlists.category} added to plalistbox ');
       });
-    }
-    playlistsList = [];
-    for (int i = 0; i < playlistBox.values.length; i++) {
-      playlistsList.add(playlistBox.getAt(i)!);
+    } else {
+      for (int i = 0; i < playlistBox.values.length; i++) {
+        allPlaylists[i] = playlistBox.getAt(i)!;
+        print("$i index of allplaylist changed");
+      }
     }
     update();
   }
 
-  // List<Playlists> get favoritesPlaylists {
-  //   playlistsList.forEach((element) {
-  //     element.playlist.where((element) => element.isFavorite);
+  // List<Playlists> favoritesPlaylists() {
+  //   allPlaylists.forEach((playlists) {
+  //     for (var i = 0; i < favoritePlaylists.length; i++) {
+  //       favoritePlaylists[i] =
+  //     }
   //   });
-  //   return playlistsList;
+    
   // }
 
   void changeCategoryIndex(dynamic index) {
@@ -48,16 +52,12 @@ class CategoryListController extends GetxController {
 
   void toggleFavorite(Playlist playlist, bool isFavoriteScreen) {
     int playlistsIndex = isFavoriteScreen ? favoriteCatIndex : categoryIndex;
-    int index = playlistsList[playlistsIndex].playlist.indexOf(playlist);
-    playlistsList[playlistsIndex].playlist[index].isFavorite =
-        !playlistsList[playlistsIndex].playlist[index].isFavorite;
-    playlistsList[playlistsIndex].playlist[index].save();
+    int index = allPlaylists[playlistsIndex].playlist.indexOf(playlist);
+    allPlaylists[playlistsIndex].playlist[index].isFavorite =
+        !allPlaylists[playlistsIndex].playlist[index].isFavorite;
+        playlistBox.putAt(playlistsIndex, allPlaylists[playlistsIndex]);
+    // allPlaylists[playlistsIndex].playlist[index].save();
     update();
-  }
-
-  static registerAdapter() {
-    Hive.registerAdapter(PlaylistsAdapter());
-    Hive.registerAdapter(PlaylistAdapter());
   }
 
   List<String> categoryList = [
@@ -67,7 +67,7 @@ class CategoryListController extends GetxController {
     'Har xil'
   ];
 
-  List<Playlists> playlists = [
+  List<Playlists> allPlaylists = [
     Playlists(
       category: 'tajvid',
       playlist: [
@@ -77,7 +77,8 @@ class CategoryListController extends GetxController {
             playlistId: 'PLi7SB6MZij7cUMk2vKsGIiiIGEhrwvc1m',
             count: 32,
             cateogory: 'tajvid',
-            doc: 'jqn-tajvid'),
+            doc: 'jqn-tajvid',
+            isFavorite: true),
         Playlist(
             title: 'Iqro - Tajvid darslari',
             imgPath: 'assets/images/iqro-azontv.jpg',
@@ -169,13 +170,13 @@ class CategoryListController extends GetxController {
       category: 'quran',
       playlist: [
         Playlist(
-          title: 'Tajvid fani(suralar)',
-          imgPath: 'assets/images/Jahongir-qori.jpg',
-          playlistId: 'PLi7SB6MZij7eFSwn85FDjyD4V1XVcuSWl',
-          count: 65,
-          cateogory: 'quran',
-          doc: 'jqn',
-        ),
+            title: 'Tajvid fani(suralar)',
+            imgPath: 'assets/images/Jahongir-qori.jpg',
+            playlistId: 'PLi7SB6MZij7eFSwn85FDjyD4V1XVcuSWl',
+            count: 65,
+            cateogory: 'quran',
+            doc: 'jqn',
+            isFavorite: true),
         Playlist(
           title: 'Tartil online ko\'rsatuvi. Yo\'ldoshbek Ibrohim . Azon Tv',
           imgPath: 'assets/images/tartil-onlayn-azontv.jpg',
@@ -265,12 +266,13 @@ class CategoryListController extends GetxController {
       category: 'arab-tili',
       playlist: [
         Playlist(
-            title: 'Arab tili "0" dan. Shams Solih',
-            imgPath: 'assets/images/arabtili0dan-shams-solih-yetukm.jpg',
-            playlistId: 'PLK-SXCrYkjTGHxafc2GZanNZX-YceEqIi',
-            count: 11,
-            cateogory: 'arab-tili',
-            doc: 'yetuk-arabtili'),
+          title: 'Arab tili "0" dan. Shams Solih',
+          imgPath: 'assets/images/arabtili0dan-shams-solih-yetukm.jpg',
+          playlistId: 'PLK-SXCrYkjTGHxafc2GZanNZX-YceEqIi',
+          count: 11,
+          cateogory: 'arab-tili',
+          doc: 'yetuk-arabtili',
+        ),
         Playlist(
             title: 'Arab tili grammatika darslari',
             imgPath: 'assets/images/arabtili-gram-yetuk.jpg',
@@ -314,7 +316,8 @@ class CategoryListController extends GetxController {
             playlistId: 'PL1CmFDys0ApkGXVH_uYqYmtglUvM4c3OB',
             count: 75,
             cateogory: 'arab-tili',
-            doc: 'minimalist-madina-arab'),
+            doc: 'minimalist-madina-arab',
+            isFavorite: true),
       ],
     ),
     Playlists(
@@ -333,7 +336,8 @@ class CategoryListController extends GetxController {
             playlistId: 'PL7AEFfKAwqe4Drk581PwrbBTK_sl8dtt6',
             count: 37,
             cateogory: 'har xil',
-            doc: 'alijon-quroniy-duolar'),
+            doc: 'alijon-quroniy-duolar',
+            isFavorite: true),
         Playlist(
             title: 'Qur\'on oqib vafot etganlar zotlar',
             imgPath: 'assets/images/quron-oqib-vafot-top-alquran.jpg',
@@ -358,6 +362,11 @@ class CategoryListController extends GetxController {
       ],
     ),
   ];
+
+  static registerAdapter() {
+    Hive.registerAdapter(PlaylistsAdapter());
+    Hive.registerAdapter(PlaylistAdapter());
+  }
 }
 
   // void addFavorites(MainUi playlist) {
