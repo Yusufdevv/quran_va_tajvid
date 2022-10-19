@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.green,
-          ),
-      title: 'Qur\'an va tajvid',
+      ),
+      title: 'Qur\'on va tajvid',
       initialBinding: SplashBinding(),
       getPages: AppPages.pages,
       home: const SplashScreen(),
