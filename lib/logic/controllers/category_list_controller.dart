@@ -31,15 +31,6 @@ class CategoryListController extends GetxController {
     update();
   }
 
-  // List<Playlists> favoritesPlaylists() {
-  //   allPlaylists.forEach((playlists) {
-  //     for (var i = 0; i < favoritePlaylists.length; i++) {
-  //       favoritePlaylists[i] =
-  //     }
-  //   });
-    
-  // }
-
   void changeCategoryIndex(dynamic index) {
     categoryIndex = index;
     update();
@@ -368,16 +359,3 @@ class CategoryListController extends GetxController {
     Hive.registerAdapter(PlaylistAdapter());
   }
 }
-
-  // void addFavorites(MainUi playlist) {
-  // favoritesList[categoryIndex].mainUi.add(item);
-  //   update();
-  // }
-
-  // void toggleFavorite(String playlistId) {
-  //   var item = mainUiDatas[categoryIndex]
-  //       .mainUi
-  //       .firstWhere((element) => element.playlistId == playlistId);
-    // addFavorites(item);
-  //   update();
-  // }

@@ -39,7 +39,6 @@ class _VideoListScreenState extends State<VideoListScreen> {
     if (tempVideosList.videos != null) {
       _videosList?.videos?.addAll(tempVideosList.videos!);
     }
-    // setState(() {});
   }
 
   @override
