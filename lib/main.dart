@@ -13,7 +13,7 @@ import 'package:path_provider/path_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   Directory dir = await getApplicationDocumentsDirectory();
   await Hive.initFlutter(dir.path);
   CategoryListController.registerAdapter();

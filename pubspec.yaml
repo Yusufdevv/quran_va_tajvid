@@ -17,8 +17,8 @@ dependencies:
   get: ^4.6.5
   http: ^0.13.5
   cached_network_image: ^3.2.1
-  cloud_firestore: ^3.4.5
-  firebase_core: ^1.21.0
+  cloud_firestore: ^4.7.1
+  firebase_core: ^2.13.0
   scrollable_positioned_list: ^0.3.2
   youtube_player_flutter: ^8.1.0
   hive: ^2.2.3
@@ -26,11 +26,11 @@ dependencies:
   url_launcher: ^6.1.6
 
 dev_dependencies:
-  hive_generator: ^1.1.3
+  hive_generator: ^2.0.0
   build_runner: ^2.2.0
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.10.0"
+  flutter_launcher_icons: ^0.13.1
 
 flutter_icons:
   android: true
